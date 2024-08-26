@@ -1,9 +1,9 @@
 package com.example.tictactoe
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tictactoe.databinding.ActivityMainBinding
 
@@ -54,39 +54,31 @@ class MainActivity : AppCompatActivity() {
                 r3c3Btn = binding.r3c3btn.text.toString()
 
                 if (r1c1Btn == r1c2Btn && r1c2Btn == r1c3Btn && r1c1Btn != "") {
-                    Toast.makeText(this@MainActivity, "Winner is: $r1c1Btn", Toast.LENGTH_SHORT)
-                        .show()
+                    showMessage(r1c1Btn)
                     resetGame()
                 } else if (r2c1Btn == r2c2Btn && r2c2Btn == r2c3Btn && r2c1Btn != "") {
-                    Toast.makeText(this@MainActivity, "Winner is: $r2c1Btn", Toast.LENGTH_SHORT)
-                        .show()
+                    showMessage(r2c1Btn)
                     resetGame()
                 } else if (r3c1Btn == r3c2Btn && r3c2Btn == r3c3Btn && r3c1Btn != "") {
-                    Toast.makeText(this@MainActivity, "Winner is: $r3c1Btn", Toast.LENGTH_SHORT)
-                        .show()
+                    showMessage(r3c1Btn)
                     resetGame()
                 } else if (r1c1Btn == r2c1Btn && r2c1Btn == r3c1Btn && r1c1Btn != "") {
-                    Toast.makeText(this@MainActivity, "Winner is: $r1c1Btn", Toast.LENGTH_SHORT)
-                        .show()
+                    showMessage(r1c1Btn)
                     resetGame()
                 } else if (r1c2Btn == r2c2Btn && r2c2Btn == r3c2Btn && r1c2Btn != "") {
-                    Toast.makeText(this@MainActivity, "Winner is: $r1c2Btn", Toast.LENGTH_SHORT)
-                        .show()
+                    showMessage(r1c2Btn)
                     resetGame()
                 } else if (r1c3Btn == r2c3Btn && r2c3Btn == r3c3Btn && r1c3Btn != "") {
-                    Toast.makeText(this@MainActivity, "Winner is: $r1c3Btn", Toast.LENGTH_SHORT)
-                        .show()
+                    showMessage(r1c3Btn)
                     resetGame()
                 } else if (r1c1Btn == r2c2Btn && r2c2Btn == r3c3Btn && r1c1Btn != "") {
-                    Toast.makeText(this@MainActivity, "Winner is: $r1c1Btn", Toast.LENGTH_SHORT)
-                        .show()
+                    showMessage(r1c1Btn)
                     resetGame()
                 } else if (r1c3Btn == r2c2Btn && r2c2Btn == r3c1Btn && r1c3Btn != "") {
-                    Toast.makeText(this@MainActivity, "Winner is: $r1c3Btn", Toast.LENGTH_SHORT)
-                        .show()
+                    showMessage(r1c3Btn)
                     resetGame()
                 } else if (r1c1Btn != "" && r1c2Btn != "" && r1c3Btn != "" && r2c1Btn != "" && r2c2Btn != "" && r2c3Btn != "" && r3c1Btn != "" && r3c2Btn != "" && r3c3Btn != "") {
-                    Toast.makeText(this@MainActivity, "Match is drawn ", Toast.LENGTH_SHORT).show()
+                    showMessage("Match is drawn")
                     resetGame()
                 }
             }
@@ -105,5 +97,14 @@ class MainActivity : AppCompatActivity() {
         binding.r3c3btn.text = ""
         flag = 0
         count = 0
+    }
+
+    private fun showMessage(winner: String) {
+        val builder = AlertDialog.Builder(this@MainActivity)
+        builder.setTitle("Game Winner")
+            .setMessage("winner is : $winner")
+            .setPositiveButton(
+                "OK"
+            ) { dialog, _ -> dialog.dismiss() }.show()
     }
 }
